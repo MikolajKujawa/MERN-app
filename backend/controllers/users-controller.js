@@ -3,15 +3,6 @@ const { validationResult } = require('express-validator');
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
-const DUMMY_USERS = [
-    {
-        id: 'u1',
-        name: 'Max Pieta',
-        email: 'test@test.com',
-        password: 'test'
-    }
-]
-
 const getUsers = async (req, res, next) => {
     let users;
     try{
@@ -33,7 +24,7 @@ const signup = async (req, res, next) => {
         )
     }
 
-    const {name, email, password, places} = req.body;
+    const {name, email, password} = req.body;
 
     let existingUser
     try {
@@ -57,7 +48,7 @@ const signup = async (req, res, next) => {
         email,
         image: 'https://filing.pl/wp-content/uploads/2014/06/filing_images_ddad50a54790.png',
         password,
-        places
+        places: []
     })
 
     try{
